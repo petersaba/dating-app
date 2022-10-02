@@ -26,6 +26,11 @@ utils.checkStrongPassword = (password) => {
         return utils.passwordErrorMessage('symblos');
 }
 
+utils.checkValidEmail = (email) => {
+    const pattern = /^.{3,}@[^\W_]{3,}\.[^\W_]{2,}$/;
+    return utils.checkPattern(email, pattern);
+}
+
 utils.checkPattern = (value, pattern) => {
     return value.search(pattern);
 }
