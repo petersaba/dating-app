@@ -55,7 +55,7 @@
 
 .form > div > div > label{
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 5px;
     transform: translate(0, -50%);
     color: 808080;
@@ -66,7 +66,7 @@
     transition: 0.5s;
 }
 
-.form > div > div > input:focus + label{
+.form > div > div > input:focus + label, .form > div> input:not(:placeholder-shown) + label{
     top: 0px;
     font-size: 16px;
     background-color: white;
@@ -84,4 +84,23 @@
     padding-left: 10px;
     outline: none;
     background-color: transparent;
+}
+
+.form > div:last-child{
+    gap: 5px;
+    align-items: center;
+}
+
+.form > div:last-child > button{
+    width: 175px;
+    height: 45px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #f48493;
+    color: white;
+    font-size: 25px;
+}
+
+.form > div:last-child > span{
+    font-size: 14px;
 }
