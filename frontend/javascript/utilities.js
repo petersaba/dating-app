@@ -1,7 +1,14 @@
 const utils = {};
 
 utils.checkStrongPassword = (password) => {
-    let pattern = /\d.*\d/;
+    if(password.length < 16)
+        return 'password should have at least 16 characters';
+
+    let pattern = / /;
+    if(utils.checkPattern(password, pattern) != -1)
+        return 'password should not contain spaces';
+
+    pattern = /\d.*\d/;
     if(utils.checkPattern(password, pattern) == -1) 
         return utils.passwordErrorMessage('integers');
     
@@ -26,5 +33,3 @@ utils.checkPattern = (value, pattern) => {
 utils.passwordErrorMessage = (type) => {
     return 'password should contain at least 2 ' + type;
 }
-
-console.log(utils.checkStrongPassword('123ASaa!@'))
