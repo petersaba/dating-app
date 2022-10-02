@@ -39,3 +39,23 @@
     color: #f48493;
     font-family: lobster;
 }
+
+.form > div{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 30px;
+}
+
+.form > div > div{
+    position: relative;
+}
+
+.form > div > div > label{
+    position: absolute;
+}
+
+.form > div > div > input{
+    height: 40px;
+    width: 100%;
+}
