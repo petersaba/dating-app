@@ -1,3 +1,8 @@
+@font-face{
+    src: url('fonts/Lobster-Regular.ttf');
+    font-family: lobster;
+}
+
 /* CSS Reset */
 *{
     padding: 0;
@@ -12,4 +17,25 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     min-height: 600px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 60px;    
+}
+
+.form{
+    background-color: white;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    border-radius: 25px;
+    border: 0;
+    padding: 30px 20px;
+}
+
+.form > h1{
+    text-align: center;
+    font-size: 60px;
+    color: #f48493;
+    font-family: lobster;
 }
