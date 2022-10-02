@@ -1,0 +1,15 @@
+/* CSS Reset */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../images/hero_login.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 600px;
+}
