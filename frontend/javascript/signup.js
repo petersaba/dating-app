@@ -6,7 +6,7 @@ const error_field = document.querySelector('.error');
 const inputs_div = document.getElementById('inputs-div');
 let password;
 let confirm_password;
-
+let username;
 
 submit.addEventListener('click', verifyInput);
 
@@ -16,13 +16,11 @@ function verifyInput(event){
     if(utils.checkValidEmail(email.value) == -1){
         utils.showError('Invalid email format', error_field);
         return;
-    }else{
     }
 
     if (utils.fieldIsEmpty(email) || utils.fieldIsEmpty(full_name) || utils.fieldIsEmpty(location_field)){
         utils.showError('please fill all fields', error_field);
         return;
-    }else{
     }
 
     utils.hideError(error_field);
@@ -35,14 +33,23 @@ function showNextPage(){
     utils.addInputDiv('Password', 'password', 'password', inputs_div);
     utils.addInputDiv('Confirm Password', 'confirm_password', 'password', inputs_div);
     submit.innerText = 'Sign Up';
+    
+    username = document.getElementById('username');
     password = document.getElementById('password');
     confirm_password = document.getElementById('confirm_password');
+
     submit.removeEventListener('click', verifyInput);
     submit.addEventListener('click', verifySamePasswords);
 }
 
 function verifySamePasswords(event){
     event.preventDefault();
+
+    if(utils.fieldIsEmpty(username) || utils.fieldIsEmpty(password) || utils.fieldIsEmpty(confirm_password)){
+        utils.showError('please fill all fields', error_field);
+        return;
+    }
+
     if (!utils.samePasswords(password.value, confirm_password.value)){
         utils.showError('both passwords should be the same', error_field);    
         return;
