@@ -4,7 +4,8 @@ const location_field = document.getElementById('location');
 const submit =document.getElementById('submit');
 const error_field = document.querySelector('.error');
 const inputs_div = document.getElementById('inputs-div');
-
+let password;
+let confirm_password;
 
 
 submit.addEventListener('click', verifyInput);
@@ -34,4 +35,17 @@ function showNextPage(){
     utils.addInputDiv('Password', 'password', 'password', inputs_div);
     utils.addInputDiv('Confirm Password', 'confirm_password', 'password', inputs_div);
     submit.innerText = 'Sign Up';
+    password = document.getElementById('password');
+    confirm_password = document.getElementById('confirm_password');
+    submit.removeEventListener('click', verifyInput);
+    submit.addEventListener('click', verifySamePasswords);
+}
+
+function verifySamePasswords(event){
+    event.preventDefault();
+    if (!utils.samePasswords(password.value, confirm_password.value)){
+        utils.showError('both passwords should be the same', error_field);    
+        return;
+    }
+    utils.hideError(error_field);
 }

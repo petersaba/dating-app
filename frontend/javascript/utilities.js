@@ -59,3 +59,9 @@ utils.addInputDiv = (field_name_shown, field_name, input_type, parent_div) => {
                                 <label for="` + field_name + `">` + field_name_shown + `</label>
                             </div>`;
 }
+
+utils.samePasswords = (password1, password2) => {
+    if(password1 == password2)
+        return true;
+    return false;
+}
