@@ -3,6 +3,7 @@ const full_name = document.getElementById('full_name');
 const location_field = document.getElementById('location');
 const submit =document.getElementById('submit');
 const error_field = document.querySelector('.error');
+const inputs_div = document.getElementById('inputs-div');
 
 
 
@@ -24,4 +25,13 @@ function verifyInput(event){
     }
 
     utils.hideError(error_field);
+    showNextPage()
+}
+
+function showNextPage(){
+    inputs_div.innerHTML = '';
+    utils.addInputDiv('Username', 'username', 'text', inputs_div);
+    utils.addInputDiv('Password', 'password', 'password', inputs_div);
+    utils.addInputDiv('Confirm Password', 'confirm_password', 'password', inputs_div);
+    submit.innerText = 'Sign Up';
 }
