@@ -38,3 +38,7 @@ utils.checkPattern = (value, pattern) => {
 utils.passwordErrorMessage = (type) => {
     return 'password should contain at least 2 ' + type;
 }
+
+utils.fieldIsEmpty = (field) => {
+    return field.value ? false : true;
+}
