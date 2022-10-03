@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         if($id == 'add'){
             $validator = validator()->make($request->all(), [
-                'name' => 'string|required',
+                'full_name' => 'string|required',
                 'email' => 'email|required',
                 'password' => 'string|required',
                 'username' => 'string|required',
@@ -43,16 +43,22 @@ class AuthController extends Controller
             ]);
         }
 
-        // $user = User::create(['name' => $request->name,
-        //                         'email' => $request->email,
-        //                         'password' => bcrypt($request->password)]);
-        
-        return response()->json([
-            'message' => 'User Created'
-            // ,
-            // 'user' => $user
+        $user = new User;
+        $user->full_name = $request->full_name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->username = $request->username;
+        $user->date_of_birth = $request->date_of_birth;
+        $user->gender = strtolower($request->gender);
+        $user->interested_in = strtolower($request->interested_in);
 
-        ]);
+        
+        if($user->save()){
+            return response()->json([
+                'message' => 'User Created',
+                'user' => $user
+            ]);
+        }
     }
 
     /**
