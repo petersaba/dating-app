@@ -52,3 +52,10 @@ utils.showError = (message, element) => {
 utils.hideError = (element) => {
     element.style.visibility = 'hidden';
 }
+
+utils.addInputDiv = (field_name_shown, field_name, input_type, parent_div) => {
+    parent_div.innerHTML += `<div>
+                                <input id="` + field_name + `" type="` + input_type + `" placeholder="this will not show">
+                                <label for="` + field_name + `">` + field_name_shown + `</label>
+                            </div>`;
+}
