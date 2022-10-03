@@ -42,3 +42,13 @@ utils.passwordErrorMessage = (type) => {
 utils.fieldIsEmpty = (field) => {
     return field.value ? false : true;
 }
+
+utils.showError = (message, element) => {
+    element.innerText = message;
+    element.style.visibility = 'visible';
+    
+}
+
+utils.hideError = (element) => {
+    element.style.visibility = 'hidden';
+}
