@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('register', [AuthController::class, 'register']);
+Route::post('user/{id?}', [AuthController::class, 'addOrEditUser']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth:api'], function(){

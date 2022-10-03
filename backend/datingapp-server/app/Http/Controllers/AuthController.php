@@ -22,21 +22,42 @@ class AuthController extends Controller
     //     $this->middleware('auth:api', ['except' => ['login']]);
     // }
 
-    public function register(Request $request){
+    public function addOrEditUser(Request $request, $id='add'){
 
-        $user = User::create(['name' => $request->name,
-                                'email' => $request->email,
-                                'password' => bcrypt($request->password)]);
+        if($id == 'add'){
+            $validator = validator()->make($request->all(), [
+                'name' => 'string|required',
+                'email' => 'email|required',
+                'password' => 'string|required',
+                'username' => 'string|required',
+                'date_of_birth' => 'date|required',
+                'gender' => ['regex:/^(male|female)$/i', 'required'],
+                'interested_in' => ['regex:/^(male|female|both)$/i', 'required']
+            ]);
+        }
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'invalid data'
+            ]);
+        }
+
+        // $user = User::create(['name' => $request->name,
+        //                         'email' => $request->email,
+        //                         'password' => bcrypt($request->password)]);
         
         return response()->json([
-            'message' => 'User Created',
-            'user' => $user
+            'message' => 'User Created'
+            // ,
+            // 'user' => $user
 
         ]);
     }
 
     /**
      * Get a JWT via given credentials.
+     * 
      *
      * @return \Illuminate\Http\JsonResponse
      */
