@@ -1,9 +1,13 @@
 const email = document.getElementById('email');
 const full_name = document.getElementById('full_name');
 const location_field = document.getElementById('location');
-const submit =document.getElementById('submit');
+const date_of_birth = document.getElementById('date-of-birth');
+const gender = document.getElementById('gender');
+const interested_in = document.getElementById('interest');
+const submit = document.getElementById('submit');
 const error_field = document.querySelector('.error');
 const inputs_div = document.getElementById('inputs-div');
+const data_entered = new FormData();
 let password;
 let confirm_password;
 let username;
@@ -19,7 +23,7 @@ function verifyInput(event){
         return;
     }
 
-    if (utils.fieldIsEmpty(email) || utils.fieldIsEmpty(full_name) || utils.fieldIsEmpty(location_field)){
+    if (utils.fieldIsEmpty(email) || utils.fieldIsEmpty(full_name) || utils.fieldIsEmpty(location_field) || utils.fieldIsEmpty(date_of_birth)){
         utils.showError('please fill all fields', error_field);
         return;
     }
@@ -30,6 +34,7 @@ function verifyInput(event){
     }
 
     utils.hideError(error_field);
+    saveEnteredData();
     showNextPage();
 }
 
@@ -83,5 +88,15 @@ function checkValidLocation(location){
     if((Math.abs(lat_and_long[0])) >= 90 || (Math.abs(lat_and_long[1]) >= 180) || lat_and_long.length != 2)
         return false;
     return true;
+}
 
+function saveEnteredData(){
+    data_entered.append('email', email.value);
+    data_entered.append('full_name', full_name.value);
+    data_entered.append('gender', gender.value);
+    data_entered.append('interested', email.value);
+    data_entered.append('date_of_birth', date_of_birth.value);
+    data_entered.append('location', location_field.value);
+
+    return data_entered;
 }
