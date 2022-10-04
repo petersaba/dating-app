@@ -24,8 +24,13 @@ function verifyInput(event){
         return;
     }
 
+    if(!checkValidLocation(location_field.value)){
+        utils.showError('location format is not valid', error_field);
+        return;
+    }
+
     utils.hideError(error_field);
-    showNextPage()
+    showNextPage();
 }
 
 function showNextPage(){
@@ -70,4 +75,13 @@ function successFunction(position){
 
 function errorFunction(){
     error_field.innerText = 'Could not retrieve your location';
+}
+
+function checkValidLocation(location){
+    const lat_and_long = location.split(', ');
+    // latitude should be between -90 and 90 and longitude should be between -180 and 180
+    if((Math.abs(lat_and_long[0])) >= 90 || (Math.abs(lat_and_long[1]) >= 180) || lat_and_long.length != 2)
+        return false;
+    return true;
+
 }
