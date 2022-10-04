@@ -66,6 +66,9 @@ class AuthController extends Controller
         $user->gender = $request->gender ? strtolower($request->gender) : $user->gender;
         $user->interested_in = $request->interested_in ? strtolower($request->interested_in) : $user->interested_in;
 
+        $user->biography = $request->biography ? $request->biography : $user->biography;
+        $user->picture_url = $request->picture_base64 ? self::saveImage($request->picture_base64, $id) : $user->picture_url;
+
         
         if($user->save()){
             return response()->json([
@@ -77,6 +80,13 @@ class AuthController extends Controller
 
     function isAttributeUsed($attribute_name, $attribute_value){
         return User::where($attribute_name, $attribute_value);
+    }
+
+    function saveImage($image_base64, $user_id){
+        $data = base64_decode($image_base64);
+        $image_name = $user_id . date('Y-m-d-H-i-s');
+        file_put_contents('../../../storage/app/images/' . $image_name, $image_base64);
+        return $image_name;
     }
 
     /**
