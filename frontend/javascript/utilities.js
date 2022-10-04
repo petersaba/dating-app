@@ -1,5 +1,7 @@
 const utils = {};
 
+utils.baseUrl = 'http://127.0.0.1:8000/api/';
+
 utils.checkStrongPassword = (password) => {
     if(password.length < 16)
         return 'password should have at least 16 characters';

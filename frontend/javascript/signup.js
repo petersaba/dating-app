@@ -9,6 +9,7 @@ let confirm_password;
 let username;
 
 submit.addEventListener('click', verifyInput);
+location_field.addEventListener('click', getLocation);
 
 function verifyInput(event){
     event.preventDefault();
@@ -55,4 +56,18 @@ function verifySamePasswords(event){
         return;
     }
     utils.hideError(error_field);
+}
+
+function getLocation(){{
+    if(!location_field.value){
+        navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    }
+}}
+
+function successFunction(position){
+    location_field.value = position.coords.latitude + ', ' + position.coords.longitude;
+}
+
+function errorFunction(){
+    error_field.innerText = 'Could not retrieve your location';
 }
