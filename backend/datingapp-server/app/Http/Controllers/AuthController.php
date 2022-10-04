@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 use App\Models\User;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
@@ -87,6 +88,21 @@ class AuthController extends Controller
         $image_name = $user_id . date('Y-m-d-H-i-s');
         file_put_contents('../../../storage/app/images/' . $image_name, $image_base64);
         return $image_name;
+    }
+
+    function getUserInfo($user_id){
+        $user = User::find($user_id);
+        if($user){
+            return response()->json([
+                'status' => 'success',
+                'message' => $user
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'user does not exist'
+            ]);
+        }
     }
 
     /**
