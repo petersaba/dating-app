@@ -128,9 +128,26 @@ button{
 .nav-bar{
     height: 100px;
     display: flex;
-    padding: 0 200px;
+    padding: 0 0 0 200px;
     align-items: center;
     background-color: #f48493;
     color: white;
-    gap: 70px;
+    gap: 80px;
+}
+
+.nav-bar > h1{
+    font-family: lobster;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-bar > ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 23px;
+}
+
+.nav-bar > ul > li{
+    cursor: pointer;
 }
