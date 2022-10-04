@@ -67,6 +67,7 @@ function verifySamePasswords(event){
         return;
     }
     utils.hideError(error_field);
+    register();
 }
 
 function getLocation(){{
@@ -95,7 +96,7 @@ function saveEnteredData(){
     data_entered.append('email', email.value);
     data_entered.append('full_name', full_name.value);
     data_entered.append('gender', gender.value);
-    data_entered.append('interested', email.value);
+    data_entered.append('interested_in', interested_in.value);
     data_entered.append('date_of_birth', date_of_birth.value);
     data_entered.append('location', location_field.value);
 
@@ -118,4 +119,11 @@ function restrictMaxDate(date_of_birth){
         
     today = yyyy + '-' + mm + '-' + dd;
     date_of_birth.max = today;
+}
+
+async function register(){
+    data_entered.append('username', username.value);
+    data_entered.append('password', password.value);
+
+    const response = await utils.axiosPost('user', data_entered);
 }
