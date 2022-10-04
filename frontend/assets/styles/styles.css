@@ -126,14 +126,16 @@ button{
 }
 
 .nav-bar{
+    top: 0;
     height: 100px;
     display: flex;
-    padding: 0 0 0 200px;
+    padding: 0 0 0 13%;
     align-items: center;
     background-color: #f48493;
     color: white;
     gap: 80px;
     position: fixed;
+    width: 100%;
 }
 
 .nav-bar > h1{
@@ -153,10 +155,28 @@ button{
     cursor: pointer;
 }
 
+.main-section-homepage{
+    display: flex;
+    gap: 50px;
+    padding-left: 20px;
+}
+
+.main-section-homepage > div:first-child{
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 27%;
+    min-width: 230px;
+    padding-left: 20px;
+}
+
+.main-section-homepage > div:last-child{
+    max-width: 68%;
+}
+
 .messages{
     position: fixed;
-    left: 200px;
-    top: 150px;
+    top: 125px;
     width: 230px;
     background-color: #303B3C;
     border-radius: 15px;
@@ -188,4 +208,21 @@ button{
     height: 28px;
     width: 28px;
     border-radius: 50%;
+}
+
+.card-container{
+    z-index: -5;
+    margin-top: 125px;
+    padding-right: 20px;
+}
+
+.card-container > div {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+
+.card-container > div > img{
+    min-width: 400px;
+    max-width: 650px;
 }
