@@ -12,6 +12,7 @@ let password;
 let confirm_password;
 let username;
 
+restrictMaxDate(date_of_birth);
 submit.addEventListener('click', verifyInput);
 location_field.addEventListener('click', getLocation);
 
@@ -99,4 +100,22 @@ function saveEnteredData(){
     data_entered.append('location', location_field.value);
 
     return data_entered;
+}
+
+function restrictMaxDate(date_of_birth){
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1; //January is 0
+    let yyyy = today.getFullYear();
+
+    if (dd < 10) {
+    dd = '0' + dd;
+    }
+    if (mm < 10) {
+    mm = '0' + mm;
+    } 
+    yyyy -= 18;
+        
+    today = yyyy + '-' + mm + '-' + dd;
+    date_of_birth.max = today;
 }
