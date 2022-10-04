@@ -67,3 +67,21 @@ utils.samePasswords = (password1, password2) => {
         return true;
     return false;
 }
+
+utils.axiosPost = async (api, data, token=null) => {
+    try{
+        return await axios.post(utils.baseUrl + api, data,
+                                {
+                                    Headers: {
+                                        'Authorization': 'Bearer ' + token
+                                    }
+                                });
+    }catch(error){
+        console.log('Error from API');
+    }
+}
+
+utils.axiosGet = async (api) => {
+    return await axios.get(utils.baseUrl + api);
+
+}
