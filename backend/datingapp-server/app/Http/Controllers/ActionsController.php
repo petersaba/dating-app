@@ -54,7 +54,14 @@ class ActionsController extends Controller
             ]);
         }
 
+        $favorite = Favorite::where([['favoriter_id', $request->blocker_id], ['favorited_id', $request->blocked_id]])->get();
+
+        if(count($favorite) > 0){
+            Favorite::where([['favoriter_id', $request->blocker_id], ['favorited_id', $request->blocked_id]])->delete();
+        }
+
         $block = Block::where([['blocker_id', $request->blocker_id], ['blocked_id', $request->blocked_id]])->get();
+
 
         if(count($block) == 0){
             $block = new Block;
