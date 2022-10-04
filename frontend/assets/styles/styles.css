@@ -151,3 +151,20 @@ button{
 .nav-bar > ul > li{
     cursor: pointer;
 }
+
+.messages{
+    position: absolute;
+    left: 200px;
+    top: 150px;
+    width: 230px;
+    background-color: #303B3C;
+    border-radius: 15px;
+    border: 0;
+    color: #D3D3D3;
+}
+
+.messages > div > img{
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+}
