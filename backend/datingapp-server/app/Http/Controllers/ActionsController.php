@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Block;
 use App\Models\Favorite;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
@@ -76,5 +77,20 @@ class ActionsController extends Controller
             'status' => 'success',
             'message' => $block
         ]);
+    }
+
+    function newMessage(Request $request){
+        $message = new Message;
+
+        $message->messager_id = $request->messager_id;
+        $message->messaged_id = $request->messaged_id;
+        $message->content = $request->content;
+
+        if($message->save()){
+            return response()->json([
+                'status' => 'success',
+                'message' => $message
+            ]);
+        }        
     }
 }
