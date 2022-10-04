@@ -27,6 +27,8 @@ class GetUsersController extends Controller
             $users = User::where([['interested_in', $user->gender], ['gender', $user->interested_in]])->get();
         }
 
+        usort($users, 'locationSort');
+
         return response()->json([
             'status' => 'success',
             'message' => $users
@@ -35,8 +37,8 @@ class GetUsersController extends Controller
 
     // to be used to sort array based on location
     function locationSort($a, $b){
-        $a = explode(', ', $a);
-        $b = explode(', ', $b);
+        $a = explode(', ', $a->location);
+        $b = explode(', ', $b->location);
 
         $lat1 = $a[0];
         $long1 = $a[1];

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use App\Models\Favorite;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 use App\Models\User;
@@ -170,9 +170,4 @@ class AuthController extends Controller
         ]);
     }
 
-    function test(Request $request){
-        return response() -> json([
-            'status' => 'Success'
-        ]);
-    }
 }
