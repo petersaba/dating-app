@@ -124,3 +124,13 @@ button{
 .form > div:last-child > span{
     font-size: 14px;
 }
+
+.nav-bar{
+    height: 100px;
+    display: flex;
+    padding: 0 200px;
+    align-items: center;
+    background-color: #f48493;
+    color: white;
+    gap: 70px;
+}
