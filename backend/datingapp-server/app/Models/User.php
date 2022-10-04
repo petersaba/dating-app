@@ -65,4 +65,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function favorites(){
+
+        return $this->hasManyThrough(User::class, Favorite::class, 'favoriter_id', 'id', 'id', 'favorited_id');
+    }
 }
