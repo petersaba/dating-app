@@ -15,4 +15,19 @@ class GetUsersController extends Controller
             'message' => $users
         ]);
     }
+
+    function getHomepageUsers($user_id){
+        $user = User::find($user_id);
+
+        if($user->interested_in == 'both'){
+            $users = User::where('interested_in', $user->gender)->orWhere('interested_in', 'both')->get();
+        }else{
+            $users = User::where([['interested_in', $user->gender], ['gender', $user->interested_in]])->get();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $users
+        ]);
+    }
 }

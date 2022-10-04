@@ -11,6 +11,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::get('userinfo/{user_id}', [AuthController::class, 'getUserInfo']);
 Route::get('favorites/{user_id}', [GetUsersController::class, 'getFavorites']);
+Route::get('homepage/{user_id}', [GetUsersController::class, 'getHomepageUsers']);
 Route::post('favorite', [ActionsController::class, 'addOrRemoveFavorite']);
 Route::post('block', [ActionsController::class, 'addOrRemoveBlock']);
 
