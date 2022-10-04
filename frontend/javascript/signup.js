@@ -126,4 +126,5 @@ async function register(){
     data_entered.append('password', password.value);
 
     const response = await utils.axiosPost('user', data_entered);
+    window.location.href = 'index.html';
 }

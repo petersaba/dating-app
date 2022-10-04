@@ -18,5 +18,5 @@ async function login(event){
     }
     utils.hideError(error_field);
     localStorage.setItem('token', response.data.access_token);
-    console.log(response);
+    window.location.href = 'homepage.html';
 }
