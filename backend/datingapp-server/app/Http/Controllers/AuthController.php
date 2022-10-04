@@ -45,8 +45,16 @@ class AuthController extends Controller
             ]);
         }
 
-        if(!isset($user))
-            $user = new User;
+        if(!isset($user)){
+            if(!self::isAttributeUsed('username', $request->username) && !self::isAttributeUsed('email', $request->email)){
+                $user = new User;
+            }else{
+                return response()->json([
+                    'status' => 'Error',
+                    'message' => 'Username or email already in use'
+                ]);
+            }
+        }
 
         $user->full_name = $request->full_name ? $request->full_name : $user->full_name;
         $user->email = $request->email ? $request->email : $user->email;
@@ -63,6 +71,10 @@ class AuthController extends Controller
                 'user' => $user
             ]);
         }
+    }
+
+    function isAttributeUsed($attribute_name, $attribute_value){
+        return User::where($attribute_name, $attribute_value);
     }
 
     /**
