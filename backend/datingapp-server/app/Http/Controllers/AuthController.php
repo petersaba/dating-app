@@ -10,6 +10,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class AuthController extends Controller
 {
     /**
@@ -46,7 +48,7 @@ class AuthController extends Controller
         }
 
         if(!isset($user)){
-            if(!self::isAttributeUsed('username', $request->username) && !self::isAttributeUsed('email', $request->email)){
+            if(isEmpty(self::isAttributeUsed('username', $request->username)) && isEmpty(self::isAttributeUsed('email', $request->email))){
                 $user = new User;
             }else{
                 return response()->json([

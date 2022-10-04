@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 
 class ActionsController extends Controller
@@ -20,6 +21,11 @@ class ActionsController extends Controller
             ]);
         }
 
-        
+        $users = Favorite::where([['favoriter_id', $request->favoriter_id], ['favorited_id', $request->favorited_id]])->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $users
+        ]);
     }
 }
