@@ -34,28 +34,32 @@ class AuthController extends Controller
                 'gender' => ['regex:/^(male|female)$/i', 'required'],
                 'interested_in' => ['regex:/^(male|female|both)$/i', 'required']
             ]);
+        }else{
+            $user = User::find($id);
         }
 
-        if($validator->fails()){
+        if(isset($validator) && $validator->fails()){
             return response()->json([
                 'status' => 'Error',
                 'message' => 'invalid data'
             ]);
         }
 
-        $user = new User;
-        $user->full_name = $request->full_name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->username = $request->username;
-        $user->date_of_birth = $request->date_of_birth;
-        $user->gender = strtolower($request->gender);
-        $user->interested_in = strtolower($request->interested_in);
+        if(!isset($user))
+            $user = new User;
+
+        $user->full_name = $request->full_name ? $request->full_name : $user->full_name;
+        $user->email = $request->email ? $request->email : $user->email;
+        $user->password = $request->password ? bcrypt($request->password) : $user->password;
+        $user->username = $request->username ? $request->username : $user->username;
+        $user->date_of_birth = $request->date_of_birth ? $request->date_of_birth : $user->date_of_birth;
+        $user->gender = $request->gender ? strtolower($request->gender) : $user->gender;
+        $user->interested_in = $request->interested_in ? strtolower($request->interested_in) : $user->interested_in;
 
         
         if($user->save()){
             return response()->json([
-                'message' => 'User Created',
+                'status' => 'Success',
                 'user' => $user
             ]);
         }
