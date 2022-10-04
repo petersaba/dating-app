@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Block;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,36 @@ class ActionsController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => $favorite
+        ]);
+    }
+
+    function addOrRemoveBlock(Request $request){
+        $validator = validator()->make($request->all(), [
+            'blocker_id' => 'integer|required',
+            'blocked_id' => 'integer|required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'Invalid values sent'
+            ]);
+        }
+
+        $block = Block::where([['blocker_id', $request->blocker_id], ['blocked_id', $request->blocked_id]])->get();
+
+        if(count($block) == 0){
+            $block = new Block;
+            $block->blocked_id = $request->blocked_id;
+            $block->blocker_id = $request->blocker_id;
+            $block->save();
+        }else{
+            Block::where([['blocker_id', $request->blocker_id], ['blocked_id', $request->blocked_id]])->delete();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $block
         ]);
     }
 }
