@@ -93,4 +93,16 @@ class ActionsController extends Controller
             ]);
         }        
     }
+
+    function getMessages($messager_id, $messaged_id){
+        $messages = Message::where([['messager_id', $messager_id], ['messaged_id', $messaged_id]])
+                                ->orWhere([['messaged_id', $messager_id], ['messager_id', $messaged_id]])
+                                ->orderBy('created_at', 'DESC')    
+                                ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $messages
+        ]);
+    }
 }
