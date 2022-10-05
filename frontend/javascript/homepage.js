@@ -16,13 +16,13 @@ window.onload = async () => {
     
     favorites_link.addEventListener('click', () => {
         window.location.href = 'favorites.html';
-    })
+    });
     profile_link.addEventListener('click', () => {
         window.location.href = '#';
-    })
+    });
     homepage_link.addEventListener('click', () => {
         window.location.href = 'homepage.html';
-    })
+    });
 
     utils.fillCards(JSON.parse(localStorage.getItem('users')), card_container);
     utils.fillMessages(JSON.parse(localStorage.getItem('messaged_users')), messages_container);
