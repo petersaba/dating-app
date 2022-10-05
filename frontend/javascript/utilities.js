@@ -148,7 +148,6 @@ utils.fillCards = (users, container) => {
 }
 
 utils.createMessageUser = (user, container) => {
-    console.log(user);
     const icon = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
     const user_div = document.createElement('div');
     user_div.dataset.id = user.id;

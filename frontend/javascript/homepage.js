@@ -10,10 +10,18 @@ window.onload = async () => {
     const card_container = document.querySelector('.card-container');
     const messages_container = document.querySelector('.messages')
     const favorites_link = document.getElementById('favorites');
-
-
+    const profile_link = document.getElementById('profile');
+    const homepage_link = document.getElementById('homepage');
+    
+    
     favorites_link.addEventListener('click', () => {
         window.location.href = 'favorites.html';
+    })
+    profile_link.addEventListener('click', () => {
+        window.location.href = '#';
+    })
+    homepage_link.addEventListener('click', () => {
+        window.location.href = 'homepage.html';
     })
 
     utils.fillCards(JSON.parse(localStorage.getItem('users')), card_container);
