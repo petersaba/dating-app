@@ -51,6 +51,8 @@ class AuthController extends Controller
         if(!isset($user)){
             if(isEmpty(self::isAttributeUsed('username', $request->username)) && isEmpty(self::isAttributeUsed('email', $request->email))){
                 $user = new User;
+                $user->email = $request->email ? $request->email : $user->email;
+                $user->username = $request->username ? $request->username : $user->username;
             }else{
                 return response()->json([
                     'status' => 'Error',
@@ -60,9 +62,7 @@ class AuthController extends Controller
         }
 
         $user->full_name = $request->full_name ? $request->full_name : $user->full_name;
-        $user->email = $request->email ? $request->email : $user->email;
         $user->password = $request->password ? bcrypt($request->password) : $user->password;
-        $user->username = $request->username ? $request->username : $user->username;
         $user->date_of_birth = $request->date_of_birth ? $request->date_of_birth : $user->date_of_birth;
         $user->gender = $request->gender ? strtolower($request->gender) : $user->gender;
         $user->interested_in = $request->interested_in ? strtolower($request->interested_in) : $user->interested_in;
