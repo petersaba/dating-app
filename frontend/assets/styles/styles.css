@@ -304,6 +304,18 @@ button{
     gap: 20px;
 }
 
+.profile-container > div > div:last-child{
+    margin-top: 3px;
+}
+
+.profile-container > div > div:first-child > h3{
+    font-size: 25px;
+}
+
+.profile-container > div > div:first-child > p{
+    font-size: 20px;
+}
+
 .profile-container > div > div:last-child > button{
     background-color: #f48493;
     color: white;
@@ -313,4 +325,11 @@ button{
     width: 175px;
     font-size: 20px;
     font-weight: 300;
+}
+
+.profile-container > div > div:last-child > button:last-child{
+    background-color: white;
+    border: 1px solid #f48493;
+    color: #f48493;
+    font-weight: 400;
 }
