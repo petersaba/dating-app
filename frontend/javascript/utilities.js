@@ -197,3 +197,24 @@ utils.createProfile = (user, container) => {
                                 </div>
                             </div>`;
 }
+
+utils.showForm = (user, property, container) => {
+    if(property == 'interest'){
+        const form_element = document.createElement('form');
+        form_element.classList.add('form');
+        form_element.classList.add('interest-form');
+
+        form_element.innerHTML = ` <h1>Change interest</h1>
+                                    <div>
+                                        <select id="interest" type="text">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="both">Both</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button id="confirm" type="submit">Confirm</button>
+                                    </div>`;
+    container.appendChild(form_element);
+    }
+}
