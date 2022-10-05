@@ -191,9 +191,9 @@ utils.createProfile = (user, container) => {
                                     <p>${bio}</p>
                                 </div>
                                 <div>
-                                    <button id="message_btn">Edit image</button>
-                                    <button id="favorites_btn">Edit interest</button>
-                                    <button id="block_btn">Edit biography</button>
+                                    <button id="image_btn">Edit image</button>
+                                    <button id="interest_btn">Edit interest</button>
+                                    <button id="biography_btn">Edit biography</button>
                                 </div>
                             </div>`;
 }
