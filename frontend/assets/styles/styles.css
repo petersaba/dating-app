@@ -335,3 +335,27 @@ button{
     color: #f48493;
     font-weight: 400;
 }
+
+.interest-form{
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 350px;
+    border: 1px solid #f48493;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.interest-form > div > select{
+    width: 50%;
+    align-self: center;
+    height: 30px;
+    font-size: 18px;
+    background-color: white;
+    color: #f48493;
+    border-radius: 5px;
+    border: 1px solid #f48493;
+}
