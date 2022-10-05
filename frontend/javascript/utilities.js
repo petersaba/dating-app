@@ -173,3 +173,27 @@ utils.fillMessages = async (users, container) => {
         utils.createMessageUser(user, container);
     }
 }
+
+utils.createProfile = (user, container) => {
+    const image = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
+    const bio = user.biography ? user.biography : 'Biography is empty';
+
+    container.innerHTML = `<h1>${user.full_name}</h1>
+                            <img src="${image}" alt="">
+                            <ul>
+                                <li>Gender: ${user.gender}</li>
+                                <li>Interested in: ${user.interested_in}</li>
+                                <li>XXXkm away</li>
+                            </ul>
+                            <div>
+                                <div>
+                                    <h3>Biography</h3>
+                                    <p>${bio}</p>
+                                </div>
+                                <div>
+                                    <button id="message_btn">Edit image</button>
+                                    <button id="favorites_btn">Edit interest</button>
+                                    <button id="block_btn">Edit biography</button>
+                                </div>
+                            </div>`;
+}
