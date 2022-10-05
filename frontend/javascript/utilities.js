@@ -122,7 +122,7 @@ utils.createUserCard = (user, container) => {
     const ageInMs = currentDate - userBirthDate;
     const ageInYears = Math.floor(ageInMs/(1000*3600*24*30*12));
 
-    const image = user.profile_url ? utils.baseUrl + '../public/images/dummy_photo.jpg' : utils.imagesUrl + 'no-photo.png';
+    const image = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
 
     const card = document.createElement('div');
     card.innerHTML = `<ul>
