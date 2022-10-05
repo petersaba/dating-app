@@ -138,3 +138,9 @@ utils.createUserCard = (user, container) => {
 
     container.appendChild(card);
 }
+
+utils.fillCards = (users, container) => {
+    for(const user of users){
+        utils.createUserCard(user, container);
+    }
+}
