@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <h1 id="homepage">The Dating App</h1>
+        <ul>
+            <li id="profile">Profile</li>
+            <li id="favorites">Favorites</li>
+        </ul>
+    </nav>
+
+    <section class="main-section-homepage">
+        <div>
+            <div class="messages">
+            </div>
+        </div>
+        <!-- cards will be added through javascript -->
+        <div class="profile-container">
+            <h2 id="full_name">Full Name</h2>
+            <img src="./assets/images/dummy_photo.jpg" alt="">
+            <ul>
+                <li>Gender: <span id="gender">Male</span></li>
+                <li>Interested in: <span id="interest">Female</span></li>
+                <li>Location: <span id="location">Male</span></li>
+            </ul>
+            <div>
+                <div>
+                    <h3>Biography</h3>
+                    <p id="bipgraphy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div>
+                    <button>Message</button>
+                    <button>Add to favorites</button>
+                    <button>Block user</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./javascript/utilities.js"></script>
+    <!-- <script src="./javascript/profile.js"></script> -->
+</body>
+</html>
