@@ -104,21 +104,10 @@ function saveEnteredData(){
 }
 
 function restrictMaxDate(date_of_birth){
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1; //January is 0
-    let yyyy = today.getFullYear();
+    const today = utils.getCurrentDate();
 
-    if (dd < 10) {
-    dd = '0' + dd;
-    }
-    if (mm < 10) {
-    mm = '0' + mm;
-    } 
-    yyyy -= 18;
-        
-    today = yyyy + '-' + mm + '-' + dd;
-    date_of_birth.max = today;
+    // only let 18+ people sign up
+    date_of_birth.max = today - 18;
 }
 
 async function register(){
