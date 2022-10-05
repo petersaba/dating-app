@@ -104,10 +104,10 @@ function saveEnteredData(){
 }
 
 function restrictMaxDate(date_of_birth){
-    const today = utils.getCurrentDate();
+    const today = utils.getEighteenDate();
 
     // only let 18+ people sign up
-    date_of_birth.max = today - 18;
+    date_of_birth.max = today;
 }
 
 async function register(){

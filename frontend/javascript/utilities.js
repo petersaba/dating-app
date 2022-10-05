@@ -1,6 +1,7 @@
 const utils = {};
 
 utils.baseUrl = 'http://127.0.0.1:8000/api/';
+utils.imagesUrl = './assets/images/';
 
 utils.checkStrongPassword = (password) => {
     if(password.length < 16)
@@ -96,20 +97,44 @@ utils.axiosGet = async (api, token=null) => {
     }
 }
 
-utils.getCurrentDate = () => {
+utils.getEighteenDate = () => {
     let today = new Date();
     let dd = today.getDate();
     let mm = today.getMonth() + 1; //January is 0
-    let yyyy = today.getFullYear();
+    const yyyy = today.getFullYear();
 
     if (dd < 10) {
     dd = '0' + dd;
     }
     if (mm < 10) {
     mm = '0' + mm;
-    } 
+    }
+    
     yyyy -= 18;
-        
+
     today = yyyy + '-' + mm + '-' + dd;
     return today;
+}
+
+utils.createUserCard = (user, container) => {
+    const currentDate = new Date();
+    const userBirthDate = new Date(user.date_of_birth);
+    const ageInMs = currentDate - userBirthDate;
+    const ageInYears = Math.floor(ageInMs/(1000*3600*24*30*12));
+
+    const image = user.profile_url ? utils.baseUrl + '../public/images/dummy_photo.jpg' : utils.imagesUrl + 'no-photo.png';
+
+    const card = document.createElement('div');
+    card.innerHTML = `<ul>
+                        <li>${user.full_name}</li>
+                        <li>Age: ${ageInYears}</li>
+                    </ul> 
+                    <img src="${image}" alt="">
+                    <ul>
+                        <li>Gender: ${user.gender}</li>
+                        <li>Interested in: ${user.interested_in}</li>
+                        <li>Location: XXXKm away</li>
+                    </ul>`;
+
+    container.appendChild(card);
 }
