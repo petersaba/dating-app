@@ -72,16 +72,26 @@ utils.axiosPost = async (api, data, token=null) => {
     try{
         return await axios.post(utils.baseUrl + api, data,
                                 {
-                                    Headers: {
-                                        'Authorization': 'Bearer ' + token
+                                    headers: {
+                                        'Authorization': "Bearer" + token
                                     }
                                 });
     }catch(error){
         console.log('Error from API');
+        console.log(error);
     }
 }
 
-utils.axiosGet = async (api) => {
-    return await axios.get(utils.baseUrl + api);
-
+utils.axiosGet = async (api, token=null) => {
+    try{
+        return await axios.get(utils.baseUrl + api,
+            {
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            });
+    }catch(error){
+        console.log('Error from Api');
+        console.log(error);
+    }
 }
