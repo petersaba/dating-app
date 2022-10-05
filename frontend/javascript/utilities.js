@@ -221,7 +221,7 @@ utils.showForm = (user, property, container) => {
     document.getElementById('confirm').addEventListener('click', () => {
         const data = new FormData();
         data.append('interested_in', new_interest.value);
-        utils.axiosPost(utils.baseUrl + 'user/' + JSON.parse(localStorage.getItem('user_info')).id, data);
+        utils.axiosPost('user/' + JSON.parse(localStorage.getItem('user_info')).id, data);
         form_element.remove();
     })
     }
