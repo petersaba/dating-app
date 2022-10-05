@@ -148,6 +148,7 @@ utils.fillCards = (users, container) => {
 }
 
 utils.createMessageUser = (user, container) => {
+    console.log(user);
     const icon = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
     const user_div = document.createElement('div');
     user_div.dataset.id = user.id;
@@ -158,12 +159,18 @@ utils.createMessageUser = (user, container) => {
     container.appendChild(user_div);
 }
 
-utils.fillMessages = (users, container) => {
+utils.fillMessages = async (users, container) => {
     container.innerHTML = `<h3>Messages</h3>
                             <!-- just to take the space of the messages header -->
                             <div></div>`;
 
+    const users_info = [];
     for(const user of users){
+        const response = await utils.axiosGet('userinfo/' + user.messaged_id, localStorage.getItem('token'));
+        users_info.push(response.data.message);
+    }
+
+    for(const user of users_info){
         utils.createMessageUser(user, container);
     }
 }
