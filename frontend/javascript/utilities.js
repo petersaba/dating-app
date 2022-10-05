@@ -133,14 +133,27 @@ utils.createUserCard = (user, container) => {
                     <ul>
                         <li>Gender: ${user.gender}</li>
                         <li>Interested in: ${user.interested_in}</li>
-                        <li>Location: XXXKm away</li>
+                        <li>XXXKm away</li>
                     </ul>`;
 
     container.appendChild(card);
 }
 
 utils.fillCards = (users, container) => {
+    container.innerHTML = '';
     for(const user of users){
         utils.createUserCard(user, container);
     }
+}
+
+utils.createMessageUser = (user, container) => {
+    const icon = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
+    const user = document.createElement('div');
+
+    user.innerHTML = `<div>
+                            <img src="${icon}" alt="">
+                            <span>${user.full_name}</span>
+                      </div>`;
+
+    container.appendChild(user);
 }
