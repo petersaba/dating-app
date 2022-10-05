@@ -227,6 +227,7 @@ button{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    width: 600px;
 }
 
 .card-container > div {
@@ -240,7 +241,8 @@ button{
 
 .card-container > div > img{
     min-width: 400px;
-    max-width: 650px;
+    /* max-width: 650px; */
+    width: 100%;
     border-radius: 5px;
 }
 
@@ -260,4 +262,5 @@ button{
     margin: 10px 0;
     font-size: 20px;
     font-weight: 600;
+    gap: 20px;
 }
