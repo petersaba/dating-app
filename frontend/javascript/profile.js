@@ -35,6 +35,5 @@ window.onload = async () => {
 
 
 function showInterestForm() {
-    console.log('hello');
     utils.showForm(JSON.parse(localStorage.getItem('user_info')), 'interest', document.body);
 }

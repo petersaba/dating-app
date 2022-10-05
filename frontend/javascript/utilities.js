@@ -220,9 +220,8 @@ utils.showForm = (user, property, container) => {
     new_interest.value = user.interested_in;
     document.getElementById('confirm').addEventListener('click', () => {
         const data = new FormData();
-        console.log(JSON.parse(localStorage.getItem('user_info')).id);
         data.append('interested_in', new_interest.value);
-        utils.axiosPost(utils.baseUrl + 'user/' + JSON.parse(localStorage.getItem('user_info')).id, data, localStorage.getItem('token'));
+        utils.axiosPost(utils.baseUrl + 'user/' + JSON.parse(localStorage.getItem('user_info')).id, data);
         form_element.remove();
     })
     }
