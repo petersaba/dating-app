@@ -90,12 +90,19 @@ class AuthController extends Controller
         return $image_name;
     }
 
-    function getUserInfo($user_id){
-        $user = User::find($user_id);
+    function getUserInfo($user_id=null){
+        $user = null;
+        if(isset($user_id))
+            $user = User::find($user_id);
         if($user){
             return response()->json([
                 'status' => 'success',
                 'message' => $user
+            ]);
+        }elseif(!isset($user_id)){
+            return response() -> json([
+                'status' => 'success',
+                'message' => Auth::user()
             ]);
         }else{
             return response()->json([
