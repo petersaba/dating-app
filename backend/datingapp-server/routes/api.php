@@ -12,10 +12,14 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('userinfo/{user_id}', [AuthController::class, 'getUserInfo']);
-    Route::get('favorites/{user_id}', [GetUsersController::class, 'getFavorites']);
-    Route::get('homepage/{user_id}', [GetUsersController::class, 'getHomepageUsers']);
-    Route::get('messages/{messager_id}/{messaged_id}', [ActionsController::class, 'getMessages']);
+    Route::get('userinfo/{user_id?}', [AuthController::class, 'getUserInfo']);
+    Route::get('favorites', [GetUsersController::class, 'getFavorites']);
+    Route::get('homepage', [GetUsersController::class, 'getHomepageUsers']);
+    Route::get('messages/{messaged_id}', [ActionsController::class, 'getMessages']);
+    Route::get('messages', [ActionsController::class, 'getMessagedUsers']);
+    
+    
+    Route::post('messages/new_message', [ActionsController::class, 'newMessage']);
     Route::post('favorite', [ActionsController::class, 'addOrRemoveFavorite']);
     Route::post('block', [ActionsController::class, 'addOrRemoveBlock']);
     Route::post('message', [ActionsController::class, 'newMessage']);

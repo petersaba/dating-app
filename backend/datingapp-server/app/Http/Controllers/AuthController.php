@@ -51,6 +51,8 @@ class AuthController extends Controller
         if(!isset($user)){
             if(isEmpty(self::isAttributeUsed('username', $request->username)) && isEmpty(self::isAttributeUsed('email', $request->email))){
                 $user = new User;
+                $user->email = $request->email ? $request->email : $user->email;
+                $user->username = $request->username ? $request->username : $user->username;
             }else{
                 return response()->json([
                     'status' => 'Error',
@@ -60,9 +62,7 @@ class AuthController extends Controller
         }
 
         $user->full_name = $request->full_name ? $request->full_name : $user->full_name;
-        $user->email = $request->email ? $request->email : $user->email;
         $user->password = $request->password ? bcrypt($request->password) : $user->password;
-        $user->username = $request->username ? $request->username : $user->username;
         $user->date_of_birth = $request->date_of_birth ? $request->date_of_birth : $user->date_of_birth;
         $user->gender = $request->gender ? strtolower($request->gender) : $user->gender;
         $user->interested_in = $request->interested_in ? strtolower($request->interested_in) : $user->interested_in;
@@ -86,16 +86,23 @@ class AuthController extends Controller
     function saveImage($image_base64, $user_id){
         $data = base64_decode($image_base64);
         $image_name = $user_id . date('Y-m-d-H-i-s');
-        file_put_contents('../../../storage/app/images/' . $image_name, $image_base64);
+        file_put_contents('../../../public/images/' . $image_name, $image_base64);
         return $image_name;
     }
 
-    function getUserInfo($user_id){
-        $user = User::find($user_id);
+    function getUserInfo($user_id=null){
+        $user = null;
+        if(isset($user_id))
+            $user = User::find($user_id);
         if($user){
             return response()->json([
                 'status' => 'success',
                 'message' => $user
+            ]);
+        }elseif(!isset($user_id)){
+            return response() -> json([
+                'status' => 'success',
+                'message' => Auth::user()
             ]);
         }else{
             return response()->json([
