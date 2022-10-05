@@ -9,6 +9,13 @@ window.onload = async () => {
 
     const card_container = document.querySelector('.card-container');
     const messages_container = document.querySelector('.messages')
+    const favorites_link = document.getElementById('favorites');
+
+
+    favorites_link.addEventListener('click', () => {
+        window.location.href = 'favorites.html';
+    })
+
     utils.fillCards(JSON.parse(localStorage.getItem('users')), card_container);
     utils.fillMessages(JSON.parse(localStorage.getItem('messaged_users')), messages_container);
 }
