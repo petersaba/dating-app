@@ -157,3 +157,13 @@ utils.createMessageUser = (user, container) => {
 
     container.appendChild(user);
 }
+
+utils.fillMessages = (users, container) => {
+    container.innerHTML = `<h3>Messages</h3>
+                            <!-- just to take the space of the messages header -->
+                            <div></div>`;
+
+    for(const user of users){
+        utils.createMessageUser(user, container);
+    }
+}
