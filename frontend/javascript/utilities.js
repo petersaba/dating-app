@@ -216,5 +216,14 @@ utils.showForm = (user, property, container) => {
                                         <button id="confirm" type="submit">Confirm</button>
                                     </div>`;
     container.appendChild(form_element);
+    const new_interest = document.getElementById('interest');
+    new_interest.value = user.interested_in;
+    document.getElementById('confirm').addEventListener('click', () => {
+        const data = new FormData();
+        console.log(JSON.parse(localStorage.getItem('user_info')).id);
+        data.append('interested_in', new_interest.value);
+        utils.axiosPost(utils.baseUrl + 'user/' + JSON.parse(localStorage.getItem('user_info')).id, data, localStorage.getItem('token'));
+        form_element.remove();
+    })
     }
 }
