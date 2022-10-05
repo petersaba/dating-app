@@ -193,14 +193,15 @@ button{
 }
 
 .messages > h3{
-    /* margin: 5px 0 10px 0; */
     display: flex;
     font-size: 22px;
     position: fixed;
+    width: 215px;
     background-color: #303B3C;
     top: 125px;
     height: 40px;
     align-items: center;
+    border-radius: 0 15px 0 0;
 }
 
 .messages > div{

@@ -125,6 +125,7 @@ utils.createUserCard = (user, container) => {
     const image = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
 
     const card = document.createElement('div');
+    card.dataset.id = user.id;
     card.innerHTML = `<ul>
                         <li>${user.full_name}</li>
                         <li>Age: ${ageInYears}</li>
@@ -148,14 +149,13 @@ utils.fillCards = (users, container) => {
 
 utils.createMessageUser = (user, container) => {
     const icon = user.profile_url ? utils.baseUrl + '../public/images/' + user.profile_url : utils.imagesUrl + 'no-photo.png';
-    const user = document.createElement('div');
+    const user_div = document.createElement('div');
+    user_div.dataset.id = user.id;
 
-    user.innerHTML = `<div>
-                            <img src="${icon}" alt="">
-                            <span>${user.full_name}</span>
-                      </div>`;
+    user_div.innerHTML = `<img src="${icon}" alt="">
+                          <span>${user.full_name}</span>`;
 
-    container.appendChild(user);
+    container.appendChild(user_div);
 }
 
 utils.fillMessages = (users, container) => {
