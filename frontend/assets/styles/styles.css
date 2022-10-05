@@ -290,12 +290,14 @@ button{
     justify-content: space-between;
     margin-top: 15px;
     font-size: 25px;
+    gap: 15px;
 }
 
 .profile-container > div {
     margin: 30px 0 30px 0;
     display: flex;
     gap: 25px;
+    justify-content: space-between;
 }
 
 .profile-container > div > div{

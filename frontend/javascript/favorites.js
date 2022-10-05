@@ -17,7 +17,7 @@ window.onload = async () => {
         window.location.href = 'favorites.html';
     });
     profile_link.addEventListener('click', () => {
-        window.location.href = '#';
+        window.location.href = 'profile.html';
     });
     homepage_link.addEventListener('click', () => {
         window.location.href = 'homepage.html';
