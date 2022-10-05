@@ -298,8 +298,19 @@ button{
     gap: 25px;
 }
 
-.profile-container > div > div:first-child{
+.profile-container > div > div{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.profile-container > div > div:last-child > button{
+    background-color: #f48493;
+    color: white;
+    border-radius: 10px;
+    border: 0;
+    height: 40px;
+    width: 175px;
+    font-size: 20px;
+    font-weight: 300;
 }
