@@ -86,7 +86,7 @@ class AuthController extends Controller
     function saveImage($image_base64, $user_id){
         $data = base64_decode($image_base64);
         $image_name = $user_id . date('Y-m-d-H-i-s');
-        file_put_contents('../../../storage/app/images/' . $image_name, $image_base64);
+        file_put_contents('../../../public/images/' . $image_name, $image_base64);
         return $image_name;
     }
 

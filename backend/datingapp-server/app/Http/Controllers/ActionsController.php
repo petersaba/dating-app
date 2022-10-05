@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Block;
 use App\Models\Favorite;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -14,7 +16,6 @@ class ActionsController extends Controller
     function addOrRemoveFavorite(Request $request){
 
         $validator = validator()->make($request->all(), [
-            'favoriter_id' => 'integer|required',
             'favorited_id' => 'integer|required'
         ]);
 
@@ -25,15 +26,15 @@ class ActionsController extends Controller
             ]);
         }
 
-        $favorite = Favorite::where([['favoriter_id', $request->favoriter_id], ['favorited_id', $request->favorited_id]])->get();
+        $favorite = Favorite::where([['favoriter_id', Auth::id()], ['favorited_id', $request->favorited_id]])->get();
 
         if(count($favorite) == 0){
             $favorite = new Favorite;
             $favorite->favorited_id = $request->favorited_id;
-            $favorite->favoriter_id = $request->favoriter_id;
+            $favorite->favoriter_id = Auth::id();
             $favorite->save();
         }else{
-            Favorite::where([['favoriter_id', $request->favoriter_id], ['favorited_id', $request->favorited_id]])->delete();
+            Favorite::where([['favoriter_id', Auth::id()], ['favorited_id', $request->favorited_id]])->delete();
         }
 
         return response()->json([
@@ -82,7 +83,7 @@ class ActionsController extends Controller
     function newMessage(Request $request){
         $message = new Message;
 
-        $message->messager_id = $request->messager_id;
+        $message->messager_id = Auth::id();
         $message->messaged_id = $request->messaged_id;
         $message->content = $request->content;
 
@@ -94,7 +95,8 @@ class ActionsController extends Controller
         }        
     }
 
-    function getMessages($messager_id, $messaged_id){
+    function getMessages($messaged_id){
+        $messager_id = Auth::id();
         $messages = Message::where([['messager_id', $messager_id], ['messaged_id', $messaged_id]])
                                 ->orWhere([['messaged_id', $messager_id], ['messager_id', $messaged_id]])
                                 ->orderBy('created_at', 'DESC')    
@@ -103,6 +105,17 @@ class ActionsController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => $messages
+        ]);
+    }
+
+    function getMessagedUsers(){
+        $messager_id = Auth::id();
+
+        $messaged_users = User::find($messager_id)->messages()->groupBy('messages.messaged_id')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message'=> $messaged_users
         ]);
     }
 }

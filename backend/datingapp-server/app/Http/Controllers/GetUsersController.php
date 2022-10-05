@@ -10,7 +10,7 @@ class GetUsersController extends Controller
 {
 
     function getFavorites(){
-        $users = User::find(Auth::id())->favoriter;
+        $users = User::find(Auth::id())->favorites()->get();
 
         return response()->json([
             'status' => 'success',
